@@ -2,8 +2,8 @@ from time import sleep
 from copy import copy
 import numpy as np
 from scipy.integrate import odeint
-from lab1_feedback_linearization.manipulators.planar_2dof import PlanarManipulator2DOF
-from lab1_feedback_linearization.manipulators.planar_2dof_pybullet import PlanarManipulator2DOFPyBullet
+from manipulators.planar_2dof import PlanarManipulator2DOF
+from manipulators.planar_2dof_pybullet import PlanarManipulator2DOFPyBullet
 
 
 def simulate(mode, trajectory_generator, controller, Tp, T, multimodel=False):

@@ -1,5 +1,5 @@
 import numpy as np
-from lab1_feedback_linearization.trajectory_generators.trajectory_generator import TrajectoryGenerator
+from trajectory_generators.trajectory_generator import TrajectoryGenerator
 
 
 class Poly3(TrajectoryGenerator):
