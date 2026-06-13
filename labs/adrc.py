@@ -39,79 +39,63 @@ controller = ADRController(Tp, params)
 
 Q, Q_d, u, T = simulate("PYBULLET", traj_gen, controller, Tp, end)
 
+
 eso1 = np.array(controller.joint_controllers[0].eso.states)
 eso2 = np.array(controller.joint_controllers[1].eso.states)
 
-plt.subplot(221)
-plt.plot(T, eso1[:, 0])
-plt.plot(T, Q[:, 0], 'r')
-plt.subplot(222)
-plt.plot(T, eso1[:, 1])
-plt.plot(T, Q[:, 2], 'r')
-plt.subplot(223)
-plt.plot(T, eso2[:, 0])
-plt.plot(T, Q[:, 1], 'r')
-plt.subplot(224)
-plt.plot(T, eso2[:, 1])
-plt.plot(T, Q[:, 3], 'r')
-plt.show()
-
-plt.subplot(221)
-plt.plot(T, Q[:, 0], 'r')
-plt.plot(T, Q_d[:, 0], 'b')
-plt.legend()
-
-
-plt.subplot(222)
-plt.plot(T, Q[:, 1], 'r')
-plt.plot(T, Q_d[:, 1], 'b')
-plt.legend()
-
-plt.subplot(223)
-plt.plot(T, u[:, 0], 'r')
-plt.plot(T, u[:, 1], 'b')
-plt.legend()
-
-
-plt.show()
-
-
-
-plt.subplot(321)
-plt.plot(T, Q[:, 0], 'r', label='q')
-plt.plot(T, Q_d[:, 0], 'b', label='q desired')
+plt.subplot(421)
+plt.plot(T, Q[:, 0], 'r', label='q measured')
+plt.plot(T, eso1[:, 0], 'g', label='q estimated (ESO)')
 plt.title('joint 1 position')
 plt.ylabel('q [rad]')
 plt.legend()
-plt.subplot(322)
-plt.plot(T, Q[:, 1], 'r', label='q')
-plt.plot(T, Q_d[:, 1], 'b', label='q desired')
+
+plt.subplot(422)
+plt.plot(T, Q[:, 1], 'r', label='q measured')
+plt.plot(T, eso2[:, 0], 'g', label='q estimated (ESO)')
 plt.title('joint 2 position')
 plt.legend()
 
-
-plt.subplot(323)
-plt.plot(T, Q[:, 2], 'r', label='q_dot')
-plt.plot(T, Q_d[:, 2], 'b', label='q_dot desired')
+plt.subplot(423)
+plt.plot(T, Q[:, 2], 'r', label='q_dot measured')
+plt.plot(T, eso1[:, 1], 'g', label='q_dot estimated (ESO)')
 plt.title('joint 1 velocity')
-plt.ylabel('q_dot')
+plt.ylabel('q_dot [rad/s]')
 plt.legend()
-plt.subplot(324)
-plt.plot(T, Q[:, 3], 'r', label='q_dot')
-plt.plot(T, Q_d[:, 3], 'b', label='q_dot desired')
+
+plt.subplot(424)
+plt.plot(T, Q[:, 3], 'r', label='q_dot measured')
+plt.plot(T, eso2[:, 1], 'g', label='q_dot estimated (ESO)')
 plt.title('joint 2 velocity')
 plt.legend()
 
-plt.subplot(325)
+plt.subplot(425)
+plt.plot(T, Q[:, 0], 'r', label='q')
+plt.plot(T, Q_d[:, 0], 'b', label='q desired')
+plt.title('joint 1 tracking')
+plt.ylabel('q [rad]')
+plt.legend()
+
+
+
+
+plt.subplot(426)
+plt.plot(T, Q[:, 1], 'r', label='q')
+plt.plot(T, Q_d[:, 1], 'b', label='q desired')
+plt.title('joint 2 tracking')
+plt.legend()
+
+plt.subplot(427)
 plt.plot(T, u[:, 0], 'r', label='u')
 plt.title('joint 1 control')
-plt.xlabel('time ')
-plt.ylabel('u ')
+plt.xlabel('time [s]')
+plt.ylabel('u [Nm]')
 plt.legend()
-plt.subplot(326)
-plt.plot(T, u[:, 1], 'r', label='u')
+
+plt.subplot(428)
+plt.plot(T, u[:, 1], 'b', label='u')
 plt.title('joint 2 control')
-plt.xlabel('time ')
+plt.xlabel('time [s]')
 plt.legend()
 
 plt.tight_layout()
