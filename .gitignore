@@ -1,2 +1,4 @@
 TSwR_student/
 *.pyc
+project/dataset
+.old
