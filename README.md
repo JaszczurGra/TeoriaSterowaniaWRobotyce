@@ -5,7 +5,7 @@
 <h2>
 Przedmiot: Teoria sterowanie w robotyce
 
-Prowadzący: Jan Węgrzynowski
+Prowadzący: mgr inż. Jan Węgrzynowski
 
 Autor: inż. Julian Mikołajczak</h2>
 
